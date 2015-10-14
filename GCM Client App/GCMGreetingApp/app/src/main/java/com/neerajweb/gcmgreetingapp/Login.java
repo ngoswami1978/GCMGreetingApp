@@ -1,13 +1,8 @@
 package com.neerajweb.gcmgreetingapp;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,17 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 import android.app.ProgressDialog;
-
 import com.neerajweb.gcmgreetingapp.dao.OwnerDAO;
 import com.neerajweb.gcmgreetingapp.dao.SettingsService;
-import com.neerajweb.gcmgreetingapp.dao.my_SqliteDatabaseHelper;
-import com.neerajweb.gcmgreetingapp.model.owner_model;
-
-import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-import android.os.Handler;
 
 /**
  * Created by Admin on 20/08/2015.
@@ -239,7 +226,7 @@ public class Login extends Activity  implements View.OnClickListener {
         try {
             switch (v.getId()) {
                 case R.id.tvregister:
-                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    Intent intent = new Intent(Login.this, activity_register_main.class);
                     startActivity(intent);
                     break;
 
@@ -251,18 +238,6 @@ public class Login extends Activity  implements View.OnClickListener {
                     break;
 
                 case R.id.tvforget:
-                    //Toast.makeText(this, "Forget Clicked", Toast.LENGTH_LONG).show();
-                    //Animator anim = AnimatorInflater.loadAnimator(this, R.animator.multi);
-                    //anim.setTarget(tvforget);
-                    //anim.setDuration(1000);
-                    //anim.setStartDelay(10);
-                    //anim.addListener(new AnimatorListenerAdapter() {
-
-                    // public void onAnimationStart(Animator animation) {
-                    //        Toast.makeText(Login.this, "Forget Clicked...", Toast.LENGTH_SHORT).show();
-                    //    };
-                    //});
-                    //anim.start();
                     break;
             }
 
@@ -350,8 +325,6 @@ public class Login extends Activity  implements View.OnClickListener {
         if (!Validation.hasText(etUsername)) ret = false;
         return ret;
     }
-
-
 
     // Class to fetch data asynchronous
     private class fetchUserDataInBackground extends AsyncTask<String, Void, String> {

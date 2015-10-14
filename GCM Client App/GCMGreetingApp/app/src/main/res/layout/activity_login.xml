@@ -18,7 +18,7 @@
         android:singleLine="true"
         android:padding="10dp"
         android:inputType="text"
-        android:background="@drawable/shape_rounded_crimson_rect"/>
+        android:background="@drawable/shape_rounded_white_rect"/>
     <EditText
         android:id="@+id/etpwd"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:singleLine="true"
         android:selectAllOnFocus="true"
         android:maxLength="25"
-        android:background="@drawable/shape_rounded_crimson_rect"/>
+        android:background="@drawable/shape_rounded_white_rect"/>
     <Button
         android:id="@+id/bSignIn"
         android:text="Sign in"
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@drawable/selector_color"
-        android:background="@drawable/shape_rounded_crimson_rect" />
+        android:background="@drawable/shape_rounded_white_rect" />
     <CheckBox
         android:id="@+id/checkbox_remember_me"
         android:layout_width="wrap_content"

@@ -18,11 +18,13 @@ android:layout_height="fill_parent">
             android:src="@drawable/user"
             android:adjustViewBounds="true"
             android:padding="5dp"
+            style="@style/myTextViewStyle_Shape_rounded_rect.WHITE"
             android:layout_marginBottom="5dp" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Name"
             android:textSize="12dp"
+            android:background="@drawable/shape_rounded_white_rect"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/etname"
@@ -40,6 +42,7 @@ android:layout_height="fill_parent">
             android:layout_width="wrap_content"
             android:text="Age"
             android:textSize="12dp"
+            android:background="@drawable/shape_rounded_white_rect"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/etAge"
@@ -71,6 +74,7 @@ android:layout_height="fill_parent">
             android:layout_width="wrap_content"
             android:text="UserName"
             android:textSize="12dp"
+            android:background="@drawable/shape_rounded_white_rect"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/etUsername"
@@ -83,11 +87,12 @@ android:layout_height="fill_parent">
             android:selectAllOnFocus="true"
             android:padding="10dp"
             android:singleLine="true"
-            android:maxLength="25" />
+            android:maxLength="25"/>
         <TextView
             android:layout_width="wrap_content"
             android:text="Password"
             android:textSize="12dp"
+            android:background="@drawable/shape_rounded_white_rect"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/etpwd"
@@ -106,6 +111,7 @@ android:layout_height="fill_parent">
             android:layout_width="wrap_content"
             android:text="Email Id"
             android:textSize="12dp"
+            android:background="@drawable/shape_rounded_white_rect"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/etEmail"
