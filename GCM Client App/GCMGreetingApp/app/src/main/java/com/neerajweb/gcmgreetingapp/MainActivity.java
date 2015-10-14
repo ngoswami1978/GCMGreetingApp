@@ -141,6 +141,7 @@ public class MainActivity extends Activity {
 		params.put("emailId", emailID);
 		params.put("regId", regId);
 		System.out.println("Email id = " + emailID + " Reg Id = " + regId);
+
 		// Make RESTful webservice call using AsyncHttpClient object
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.post(ApplicationConstants.APP_SERVER_URL, params,
