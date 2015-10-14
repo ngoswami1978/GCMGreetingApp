@@ -1,5 +1,5 @@
 <?php
-if(!defined('INCLUDE_CHECK')) die('You are not allowed to execute this file directly');
+//if(!defined('INCLUDE_CHECK')) die('You are not allowed to execute this file directly');
  
 class DB_Functions {
  
@@ -40,8 +40,8 @@ class DB_Functions {
      * Get GCMRegId
      * 
      */
-    public function getGCMRegID($emailID){
-         $result = mysql_query("SELECT gcmregid FROM members WHERE email = "."'$emailID'");
+    public function getGCMRegID($usr){
+         $result = mysql_query("SELECT gcmregid FROM members WHERE usr = "."'$usr'");
          return $result;
     }
 }

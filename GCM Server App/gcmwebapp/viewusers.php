@@ -1,85 +1,203 @@
 <html>
 <head><title>View Users</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="/Apartment/Login.css" media="screen" />
 <style>
 body {
-  font: normal medium/1.4 sans-serif;
+	font: normal medium/1.4 sans-serif;
+	background-image: url('img/bg_1.jpg');
+    background-size: cover;  
 }
+
 div.greetblock, div.serverresponse {
   border-collapse: collapse;
-  width: 60%;
+  width: 900px;
   margin-left: auto;
   margin-right: auto;
-  align: center;
-}
-tr > td {
-  padding: 0.25rem;
-  text-align: center;
-  border: 1px solid #ccc;
-}
-tr:nth-child(even) {
-  background: #fff;
-  
-}
-tr:nth-child(odd) {
-  background: #FA9A8B;
-  color: #fff;
-}
-tr#header{
-background: #F78371;
+  align: center;  
 }
 
 div#norecord{
-margin-top:10px;
-width: 15%;
-margin-left: auto;
-margin-right: auto;
+	margin-top:10px;
+	width: 15%;
+	margin-left: auto;
+	margin-right: auto;
 }
 input,select{
-cursor: pointer;
+	cursor: pointer;
 }
 img{
-margin-top: 10px;
-height: 200px;
-width: 300px;
+	margin-top: 10px;
+	height: 200px;
+	width: 300px;
 }
 select{
 width: 200px
 }
+
 div.leftdiv{
-width: 45%;
-padding: 0 10px;
-float: left;
-border: 1px solid #ccc;
-margin: 5px;
-height: 320px;
-text-align:center;
+	width: 400px;
+	padding: 0 10px;
+	float: left;
+	border: 1px solid #ccc;
+	margin: 5px;
+	height: 320px;
+	text-align:center;
+	overflow:auto;
 }
+
 div.rightdiv{
-width: 45%;
-padding: 0 10px;
-float: right;
-border: 1px solid #ccc;
-margin: 5px;
-height: 320px;
-text-align:center;
+	width: 400px;
+	padding: 0 10px;
+	float: right;
+	border: 1px solid #ccc;
+	margin: 5px;
+	height: 320px;
+	text-align:center;
 }
 hidediv{
 display: none;
 }
-p.header{
-height: 40px;
-background-color: #EB5038;
-padding: 10px;
-color: #fff;
-text-align:center;
-margin: 0;
-margin-bottom: 10px;
+	p.header{
+	height: 40px;
+	background-color: #EB5038;
+	padding: 10px;
+	color: #fff;
+	text-align:center;
+	margin: 0;
+	margin-bottom: 10px;
 }
 textarea{
-font-size: 25px;
-font-weight: bold;
+	font-size: 25px;
+	font-weight: bold;
 }
+
+table.imagetable {
+	font-family: verdana,arial,sans-serif;	
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.imagetable th {
+	background:#b5cfd2 url('img/cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.imagetable td {
+	background:#dcddc0 url('img/cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+/*CSS for dropdown box*/
+select
+{
+	width: 200px;
+	height: 29px;
+	border-radius: 3px;
+	border: 1px solid #CCC;
+	font-weight: 200;
+	font-size: 15px;
+	font-family: Verdana;
+	box-shadow: 1px 1px 5px #CCC;
+}
+select: hover
+{
+	width: 200px;
+	height: 29px;
+	border-radius: 3px;
+	border: 1px solid #CCC;
+	font-weight: 200;
+	font-size: 15px;
+	font-family: Verdana;
+	box-shadow: 1px 1px 5px #CCC;
+}
+
+/*CSS for textarea*/
+textarea
+{
+	width: 300px;
+	height: 120px;
+	border-radius: 3px;
+	border: 1px solid #CCC;
+	padding: 8px;
+	font-weight: 200;
+	font-size: 15px;
+	font-family: Verdana;
+	box-shadow: 1px 1px 5px #CCC;
+}
+textarea:hover
+{
+	width: 300px;
+	height: 120px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	padding: 8px;
+	font-weight: 200;
+	font-size: 15px;
+	font-family: Verdana;
+	box-shadow: 1px 1px 5px #CCC;
+}
+
+#overLeft
+{
+	border: 1px solid #ccc;
+    position:absolute;
+    width:180px;
+    height:440px;
+    text-align: center; /*handles the horizontal centering*/	
+	left:5px;
+	top:5px;
+	z-index:-1;
+}
+#overRight
+{
+	border: 1px solid #ccc;
+    position:absolute;
+    width:180px;
+    height:440px;
+    text-align: center; /*handles the horizontal centering*/	
+	right:5px;
+	top:5px;
+	z-index:-1;
+}
+#overBottomRight
+{
+	border: 1px solid #ccc;
+    position:absolute;
+    width:180px;
+    height:440px;
+    text-align: center; /*handles the horizontal centering*/	
+	right:5px;
+	bottom:5px;
+	z-index:-1;
+}
+#overBottomLeft
+{
+	border: 1px solid #ccc;
+    position:absolute;
+    width:180px;
+    height:440px;
+    text-align: center; /*handles the horizontal centering*/	
+	left:5px;
+	bottom:5px;
+	z-index:-1;
+}
+.Centered
+{
+    display: inline-block;
+    vertical-align: middle;
+	margin: auto auto;
+	-webkit-filter: blur(1px);
+    filter: blur(1px);
+}
+
 
 </style>
 <script>
@@ -127,7 +245,7 @@ $(function(){
 </script>
 </head>
 <body>
-	
+
 <?php
 	define('INCLUDE_CHECK',true);
 	session_name('tzLogin');
@@ -153,18 +271,24 @@ $(function(){
 <div class="leftdiv">
 <p class="header">Select Users to whom you want to send Greeting message
 </p>
-<table>
-<tr id="header"><td>MemberId</td><td>Member</td><td>Send Message?</td></tr>
-<?php
-    while ($row = mysql_fetch_array($users)) {
-?> 
-<tr>
-<td><span><?php echo $row["id"] ?></span></td>
-<td><span><?php echo $row["usr"] ?></span></td>
-<td><span class="wrapper"><input type="checkbox" name="sendmsg[]" value="<?php echo $row["email"] ?>"/></span></td>
-</tr>
-<?php } ?>
-</table>
+
+	<table class="imagetable">
+		<tr id="header">
+               <th>Send Message?</th>
+               <th>Member</th>
+               <th>Email</th>               
+        </tr>
+	<?php
+		while ($row = mysql_fetch_array($users)) {
+	?> 
+	<tr>
+	<td><span class="wrapper"><input type="checkbox" name="sendmsg[]" value="<?php echo $row["usr"] ?>"/></span></td>
+	<td><span><?php echo $row["usr"] ?></span></td>
+	<td><span><?php echo $row["email"] ?></span></td>
+	</tr>
+	<?php } ?>
+	</table>
+
 </div>
 <div class="rightdiv">
 <p class="header">Select Greeting Card
@@ -183,7 +307,7 @@ $(function(){
 <div class="leftdiv">
 <p class="header">Type your message
 </p>
-<textarea cols="15" rows="5" value="txtarea">
+<textarea cols="20" rows="5" value="txtarea">
 
 </textarea>
 </div>
@@ -202,7 +326,7 @@ $(function(){
 else{ 
 ?>
 <div id="norecord">
-No records in MySQL DB
+Members not yet registered
 </div>
 <?php } ?>
 
