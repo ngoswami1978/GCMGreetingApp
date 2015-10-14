@@ -103,6 +103,9 @@ public class Login extends Activity  implements View.OnClickListener {
             });
 
 
+
+
+
             if (remeberCredentials == true) {
                 String savedusername = settingservice.GetSetting(this, "username", String.valueOf(""));
                 String savedpassword = settingservice.GetSetting(this, "password", String.valueOf(""));
