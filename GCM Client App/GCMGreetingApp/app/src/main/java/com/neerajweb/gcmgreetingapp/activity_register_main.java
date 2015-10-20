@@ -50,9 +50,9 @@ import com.neerajweb.gcmgreetingapp.model.flat_model;
 /**
  * Created by Admin on 14/10/2015.
  */
-public class activity_register_main extends Activity implements OnItemSelectedListener  {
+public class activity_register_main extends drawable_main_activity implements OnItemSelectedListener  {
 
-    public static final String TAG = "AddOwnerActivityInMainActivity";
+    public static final String TAG = "RegisterActivity";
 
     private Button bSignUp;
     private  EditText etname,etAge,etUsername,etpwd,etEmail;
@@ -74,7 +74,16 @@ public class activity_register_main extends Activity implements OnItemSelectedLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_main);
+        //setContentView(R.layout.activity_register_main);
+
+        /**
+         *  We will not use setContentView in this activty
+         *  Rather than we will use layout inflater to add view in FrameLayout of our base activity layout*/
+
+        /**
+         * Adding our layout to parent class frame layout.
+         */
+        getLayoutInflater().inflate(R.layout.activity_register_main, frameLayout);
 
         try
         {
@@ -107,7 +116,7 @@ public class activity_register_main extends Activity implements OnItemSelectedLi
             }
         }catch (Exception e)
         {
-            Log.d(TAG, "Error in Ocreate method : " + e.getMessage());
+            Log.d(TAG, "onCreate : " + e.getMessage());
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }

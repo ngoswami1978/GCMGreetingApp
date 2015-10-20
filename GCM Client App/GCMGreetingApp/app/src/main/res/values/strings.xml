@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GCMGreetingApp</string>
+    <string name="app_name">Galaxy Apartment</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="welcome">GCM Greeting App</string>
+    <string name="welcome">Welcome to Lakshaya Residency</string>
+    <string name="GreetingRregistration">Click to Register Greeting</string>
+
     <string name="email">Email Address</string>
     <string name="login">Register Me</string>
     <string name="signup">Don\'t have account? Sign Up</string>
     <string name="defaultmsg">Message sent by server will appear here.</string>
     <string name="msg_title">Message</string>
     <string name="user_title">Hello User</string>
+
+    <string name="action_logout">Logout</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
 
     <integer name="item_columns">2</integer>

@@ -55,7 +55,7 @@ public class Login extends Activity  implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         linearLayout = (LinearLayout) findViewById(R.id.LoginActivity);
-        images = new int[]  {R.drawable.apartment1, R.drawable.apartment2, R.drawable.apartment3, R.drawable.apartment4};
+        images = new int[]  {R.drawable.apartment3, R.drawable.apartment4, R.drawable.apartment5, R.drawable.apartment9};
         linearLayout.setBackgroundResource(images[getRandomNumber()]);
 
         try {
@@ -102,10 +102,6 @@ public class Login extends Activity  implements View.OnClickListener {
                 public void onTextChanged(CharSequence s, int start, int before, int count){}
             });
 
-
-
-
-
             if (remeberCredentials == true) {
                 String savedusername = settingservice.GetSetting(this, "username", String.valueOf(""));
                 String savedpassword = settingservice.GetSetting(this, "password", String.valueOf(""));
@@ -139,6 +135,12 @@ public class Login extends Activity  implements View.OnClickListener {
 
                     //Displays messages for CRUD operations
                     shMsg.setText(shId.getText());
+
+                    Intent intent = new Intent(Login.this, drawable_main_activity.class);
+                    startActivity(intent);
+
+                    //var myIntent = new Intent (this, typeof(drawable_main_activity));
+
 
                     /*
                          var myIntent = new Intent (this, typeof(WelcomeActivity));
