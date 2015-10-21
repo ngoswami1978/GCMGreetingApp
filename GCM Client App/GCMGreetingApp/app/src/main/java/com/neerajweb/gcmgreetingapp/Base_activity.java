@@ -1,7 +1,5 @@
 package com.neerajweb.gcmgreetingapp;
 
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -32,7 +30,7 @@ import com.neerajweb.gcmgreetingapp.view.SimpleCardStackAdapter;
 /**
  * Created by Admin on 14/10/2015.
  */
-public class drawable_main_activity extends AppCompatActivity {
+public class Base_activity extends AppCompatActivity {
     private CardContainer mCardContainer;
     private RecycleViewNavigation mRecycleViewNavigation;
 
@@ -130,7 +128,7 @@ public class drawable_main_activity extends AppCompatActivity {
 
             mRecyclerView.setLayoutManager(mLayoutManager);                 // Setting the layout Manager
 
-            final GestureDetector mGestureDetector = new GestureDetector(drawable_main_activity.this, new GestureDetector.SimpleOnGestureListener() {
+            final GestureDetector mGestureDetector = new GestureDetector(Base_activity.this, new GestureDetector.SimpleOnGestureListener() {
 
                 @Override
                 public boolean onSingleTapUp(MotionEvent e) {
@@ -221,9 +219,9 @@ public class drawable_main_activity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass = null;
 
-        drawable_main_activity.position = position; //Setting currently selected position in this field so that it will be available in our child activities.
-       try
-         {
+        Base_activity.position = position; //Setting currently selected position in this field so that it will be available in our child activities.
+        try
+        {
             switch (intPosition) {
                 case 0:
                     Log.d("HomeActivity", "Open automatically");
@@ -319,19 +317,19 @@ public class drawable_main_activity extends AppCompatActivity {
                 default:
                     break;
             }
-             //LayoutInflater inflater = getLayoutInflater();
-             //LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-             //inflater.inflate(R.layout.drawable_activity_main, container);
+            //LayoutInflater inflater = getLayoutInflater();
+            //LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
+            //inflater.inflate(R.layout.drawable_activity_main, container);
 
-             //fragment = (Fragment) fragmentClass.newInstance();
-             // Insert the fragment by replacing any existing fragment
-             //FragmentManager fragmentManager = getSupportFragmentManager();
-             //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            //fragment = (Fragment) fragmentClass.newInstance();
+            // Insert the fragment by replacing any existing fragment
+            //FragmentManager fragmentManager = getSupportFragmentManager();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-       }catch(Exception Ex)
-       {
-           Log.i("openActivity ", Ex.getMessage());
-       }
+        }catch(Exception Ex)
+        {
+            Log.i("openActivity ", Ex.getMessage());
+        }
     }
 
     public void openMembersListSwipeableCards()

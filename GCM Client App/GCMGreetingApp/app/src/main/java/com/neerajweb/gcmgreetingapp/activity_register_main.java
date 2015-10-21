@@ -1,6 +1,5 @@
 package com.neerajweb.gcmgreetingapp;
 
-
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -50,7 +49,7 @@ import com.neerajweb.gcmgreetingapp.model.flat_model;
 /**
  * Created by Admin on 14/10/2015.
  */
-public class activity_register_main extends drawable_main_activity implements OnItemSelectedListener  {
+public class activity_register_main extends Base_activity implements OnItemSelectedListener  {
 
     public static final String TAG = "RegisterActivity";
 
