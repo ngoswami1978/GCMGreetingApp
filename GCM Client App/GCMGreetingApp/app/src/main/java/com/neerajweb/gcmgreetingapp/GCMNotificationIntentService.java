@@ -47,7 +47,7 @@ public class GCMNotificationIntentService extends IntentService {
 	}
 
 	private void sendNotification(String greetMsg) {
-	        Intent resultIntent = new Intent(this, GreetingActivity.class);
+	        Intent resultIntent = new Intent(this, receive_greeting_activity.class);
 	        resultIntent.putExtra("greetjson", greetMsg);
 	        resultIntent.setAction(Intent.ACTION_MAIN);
 	        resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);

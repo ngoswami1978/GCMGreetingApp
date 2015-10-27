@@ -87,6 +87,7 @@
         android:padding="10dp"
         android:src="@drawable/camera"
         android:layout_above="@+id/like_dislike"
+        android:layout_toLeftOf="@+id/btn_sep_2"
         android:layout_toStartOf="@+id/btn_sep_2" />
 
     <View
