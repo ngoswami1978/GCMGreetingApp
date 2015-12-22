@@ -1,0 +1,167 @@
+-------gcmusers--------------------------------------------------------
+ALTER TABLE gcmusers CHANGE COLUMN  `registerDate`  `registerDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ;
+--------------------------------------------------------------------------
+
+
+-------flat_master--------------------------------------------------------
+CREATE TABLE flat_master(
+flt_id INT NOT NULL AUTO_INCREMENT ,
+flt_type VARCHAR( 10 ) NOT NULL ,
+flt_no VARCHAR( 10 ) NOT NULL ,
+PRIMARY KEY ( flt_id )
+) ENGINE = INNODB;
+
+insert into flat_master(flat_no,flat_type)
+select "G1",	"1BHK"
+union
+select "G2",	"1BHK"
+union
+select "UG1",	"2BHK"
+union
+select "UG2",	"1BHK"
+union
+select "UG3",	"1BHK"
+union
+select "UG4",	"2BHK"
+union
+select "F1",	"2BHK"
+union
+select "F2",	"1BHK"
+union
+select "F3",	"1BHK"
+union
+select "F4",	"2BHK"
+union
+select "S1",	"2BHK"
+union
+select "S2",	"1BHK"
+union
+select "S3",	"1BHK"
+union
+select "S4",	"2BHK"
+union
+select "T1",	"2BHK"
+union
+select "T2",	"1BHK"
+union
+select "T3",	"1BHK"
+union
+select "T4",	"2BHK"
+union
+select "TOP",	"2BHK"
+--------------------------------------------------------------------------
+
+--------members-----------------------------------------------------------
+CREATE TABLE members(
+	id INT NOT NULL AUTO_INCREMENT ,
+	usr VARCHAR( 25 ) NOT NULL ,
+	pass VARCHAR( 50 ) NOT NULL ,
+	email VARCHAR( 80 ) NOT NULL ,
+	regIP VARCHAR( 15 ) ,
+	dt DATETIME,
+	gcmregid VARCHAR( 2000 ) ,
+	approve_status BIT,
+	flt_id INT,
+	Owner_name VARCHAR( 50 ) ,
+	Owner_contact VARCHAR( 25 ) ,
+	Age INT,
+	Renter_name VARCHAR( 50 ) ,
+	Renter_contact VARCHAR( 25 ) ,
+
+PRIMARY KEY (id),
+FOREIGN KEY (flt_id) REFERENCES flat_master(flt_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+)ENGINE=InnoDB;
+--------------------------------------------------------------------------
+
+--------MaintainanceMaster------------------------------------------------
+CREATE TABLE MaintainanceMaster(
+payid INT NOT NULL AUTO_INCREMENT ,
+MONTH INT NOT NULL ,
+YEAR INT NOT NULL ,
+PRIMARY KEY ( payid )
+) ENGINE = INNODB;
+--------------------------------------------------------------------------
+
+-------MaintainanceDetail-------------------------------------------------
+CREATE TABLE MaintainanceDetail(
+dtl_Id INT NOT NULL AUTO_INCREMENT ,
+payid INT,
+MONTH INT NOT NULL ,
+YEAR INT NOT NULL ,
+OwnerId INT,
+flt_id INT,
+Amount INT,
+Entrydt DATETIME,
+IsAdminApprove int,
+AdminApprovedt DATETIME,
+Paidby VARCHAR( 10 ) ,
+
+PRIMARY KEY ( dtl_Id ) ,
+FOREIGN KEY ( flt_id ) REFERENCES flat_master( flt_id  ) ,
+FOREIGN KEY ( payid ) REFERENCES MaintainanceMaster( payid ) ,
+FOREIGN KEY ( OwnerId ) REFERENCES members( id ) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = INNODB;
+
+
+bit value insert like  = b'0'
+
+SELECT CAST(IsAdminApprove AS UNSIGNED) AS IsAdminApprove  FROM  MaintainanceDetail
+
+--------------------------------------------------------------------------
+
+{"register_member":[{"id":"7","usr":"Admin","pass":"380cd1652334f4c9d4181b7c3d8a7ea0","email":"neeraj.login@gmail.com","regIP":"121.240.117.41","dt":"2015-10-07 06:41:26","gcmregid":null,
+"approve_status":null,"flt_id":"1","Owner_name":"Neeraj Goswami","Owner_contact":"989846293","Renter_name":"Upender Tanwar","Renter_contact":"9899846256","flt_no":"G1","flt_type":"1BHK"},
+{"id":"8","usr":"Neeraj","pass":"5a60d732465912d25f1d27def93a8437","email":"neeraj.login@gmail.com","regIP":"1.39.32.202","dt":"2015-10-07 06:41:49","gcmregid":"APA91bGOGI4Cj93GfBb-EFaf52I61WmEQMKxRcgm_59hGZ8Q0tKgcpgXHUO9NCCSmA13ODN6CMuDMS7ZA0KPmBwPDxuTLrDwkdUDnXMS9jPCTg6cq8iz7UPgck11oYo27jzR0eGTZ7sD","approve_status":null,"flt_id":"4","Owner_name":"Neeraj Goswami","Owner_contact":"9899846293","Renter_name":"Upender Tanwar","Renter_contact":"9845236556","flt_no":"UG2","flt_type":"1BHK"},{"id":"12","usr":"vishal.goswami","pass":"74ee48c2850892e673e60714ade6b1c8","email":"vishal.goswami.82@gmail.com","regIP":"68.91.224.20","dt":"2015-10-08 14:09:37","gcmregid":"APA91bE5iGcb4COOxuSHqvyJOtoN4bJ-FEiqi9kMsRG7bI3SZrDcqDLdEd3FuTdsY7WhodfJ0hwJapETLE9K1dwkkIWlDQkPZIXdKHTG5hP4eo1XcUY2Njav-3BSkfhb0oeIf9yrfsg2","approve_status":null,"flt_id":"6","Owner_name":"Vishal Goswami","Owner_contact":"886452693","Renter_name":"Neeraj Goswami","Renter_contact":"9899846293","flt_no":"UG4","flt_type":"2BHK"},{"id":"16","usr":"ashish","pass":"2fc4191d078e77c5d201b56a5525c5bc","email":"ashishnanmun@gmail.com","regIP":"121.240.117.41","dt":"2015-10-13 04:19:37","gcmregid":"APA91bGOGI4Cj93GfBb-EFaf52I61WmEQMKxRcgm_59hGZ8Q0tKgcpgXHUO9NCCSmA13ODN6CMuDMS7ZA0KPmBwPDxuTLrDwkdUDnXMS9jPCTg6cq8iz7UPgck11oYo27jzR0eGTZ7sD","approve_status":null,"flt_id":"10","Owner_name":"Ashish Srivastava","Owner_contact":"977125689","Renter_name":"Upender TYanwar","Renter_contact":"985446293",
+"flt_no":"F4","flt_type":"2BHK"}]}
+
+id
+usr
+pass
+email
+regIP
+dt
+gcmregid
+approve_status
+flt_id
+Owner_name
+Owner_contact
+Age
+Renter_name
+Renter_contact
+
+
+-------------------// It's working primary and foreign key in mysql-----------------------------------------------------
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (P_Id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Orders
+(
+O_Id int,
+OrderNo int,
+P_Id int NOT NULL,
+PRIMARY KEY (O_Id),
+FOREIGN KEY (P_Id) REFERENCES Persons(P_Id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+INSERT INTO Persons VALUES
+(1, 'Last', 'First', 'Address', 'City');
+
+INSERT INTO Orders VALUES
+(1, 2, 1);
+
+DELETE FROM Persons WHERE P_Id = 1
+select * from Orders;
+------------------------------------------------------------------------------------------------------------------------------
+
+
