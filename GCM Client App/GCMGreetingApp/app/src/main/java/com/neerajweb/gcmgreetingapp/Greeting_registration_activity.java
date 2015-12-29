@@ -67,7 +67,7 @@ public class Greeting_registration_activity extends base_activity_main {
 		}
 	}
 
-	// When Register Me button is clicked
+	// When Register Me button is clicked defined in xml android:onClick="RegisterUser"
 	public void RegisterUser(View view) {
 		String emailID = emailET.getText().toString();
 
