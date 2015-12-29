@@ -15,11 +15,9 @@ if (!mysql_select_db('myandroidng', $link)) {
     exit;
 }
 
-
-//$sql    = 'SELECT  members.* ,  flat_master.* FROM flat_master A LEFT OUTER JOIN members B ON A.flt_id = B.flt_id  WHERE  members.flt_id =  flat_master.flt_id';
-
- // $sql    = 'SELECT A.flt_id,A.flt_no,A.flt_type ,IFNULL(B.Owner_name,"Not Registered") as Owner_name ,IFNULL(B.id,0) as id,IFNULL(B.usr,"Not Registered") as usr,B.pass,B.email,B.regIP,B.dt,B.gcmregid
- // ,B.approve_status,B.Owner_contact,B.Renter_name,B.Renter_contact FROM flat_master A
+ //$sql= 'SELECT  members.* ,  flat_master.* FROM flat_master A LEFT OUTER JOIN members B ON A.flt_id = B.flt_id  WHERE  members.flt_id =  flat_master.flt_id';
+ //$sql= 'SELECT A.flt_id,A.flt_no,A.flt_type ,IFNULL(B.Owner_name,"Not Registered") as Owner_name ,IFNULL(B.id,0) as id,IFNULL(B.usr,"Not Registered") as usr,B.pass,B.email,B.regIP,B.dt,B.gcmregid
+ //,B.approve_status,B.Owner_contact,B.Renter_name,B.Renter_contact FROM flat_master A
  // LEFT OUTER JOIN members B ON A.flt_id = B.flt_id';
 
 
@@ -33,6 +31,7 @@ if (!mysql_select_db('myandroidng', $link)) {
 			,B.Renter_name
 			,B.Renter_contact
 			,MONTHNAME(STR_TO_DATE(dtls.Month, "%m")) as LastPaidMonth
+
 			,dtls.Year as LastPaidYear
 			,dtls.Amount  as LastPaidAmount
 			,dtls.Entrydt as LastPaidEntrydt
@@ -41,12 +40,18 @@ if (!mysql_select_db('myandroidng', $link)) {
 			FROM flat_master A
 			LEFT OUTER JOIN members B ON A.flt_id = B.flt_id
 			LEFT OUTER JOIN (
-			select main.* from MaintainanceDetail main
-			inner join (select OwnerId,flt_id,Month,Year from (
-			select OwnerId,flt_id,max(month) as Month,max(year) as Year from MaintainanceDetail group by OwnerId,flt_id) as xyz)  as abc
-			on main.OwnerId=abc.OwnerId and main.flt_id=abc.flt_id and 
-			main.Month=abc.Month and main.Year=abc.Year) as dtls 
-			ON A.flt_id = dtls.flt_id';
+			select 
+			MAX(((((YEAR*100) + MONTH)*100)+1)) as DATE
+			,MONTH(CONVERT(MAX(((((YEAR*100) + MONTH)*100)+1)),DATETIME)) AS MONTH
+			,YEAR(CONVERT(MAX(((((YEAR*100) + MONTH)*100)+1)),DATETIME)) AS YEAR
+			,AMOUNT
+			,OWNERID
+			,FLT_ID 
+			,AdminApprovedt
+			,Paidby
+			,ENTRYDT
+			from MaintainanceDetail GROUP BY OWNERID,FLT_ID) as dtls 
+			ON A.flt_id = dtls.FLT_ID';
 					
 
 $result = mysql_query($sql, $link);

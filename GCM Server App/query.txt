@@ -1,9 +1,48 @@
+
 -------gcmusers--------------------------------------------------------
 ALTER TABLE gcmusers CHANGE COLUMN  `registerDate`  `registerDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ;
 --------------------------------------------------------------------------
 
+--- post and comment master table --------------------------------------
+CREATE TABLE T_MS_POST_TITLE(
+id INT NOT NULL AUTO_INCREMENT ,
+title VARCHAR( 2000 ) ,
+PRIMARY KEY ( id )
+) ENGINE = INNODB;
 
--------flat_master--------------------------------------------------------
+
+---post and comment  detail table--------------------------------------- 
+CREATE TABLE T_DTLS_POST_COMMENTS(
+	id INT NOT NULL AUTO_INCREMENT ,
+	Sequence INTEGER,
+	_Titleid INTEGER,
+	Username VARCHAR( 50 ) ,
+	PostcommentDateTime VARCHAR( 30 ) ,
+	Postcomment TEXT,
+	PRIMARY KEY ( id ) ,
+	FOREIGN KEY ( _Titleid ) REFERENCES T_MS_POST_TITLE( id ) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = INNODB;
+
+
+insert into T_MS_POST_TITLE(title) values ('Maintainance')
+insert into T_MS_POST_TITLE(title) values ('Laundry Facilities')
+insert into T_MS_POST_TITLE(title) values ('Parking')
+
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (1,1,'Admin','2015-01-12','hey guys ! pls let me know what is the maintainance cost per month.')
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (2,1,'Admin','2015-01-14','1K for 1 BH')
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (3,1,'Admin','2015-01-18','1.5K for 2 BHK')
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (1,2,'Admin','2015-02-11','Who is doing Laundry work can anybody le me know?')
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (2,2,'Admin','2015-03-15','Upper Shopper Stopper')
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (1,3,'Admin','2015-02-11','hi! please clear the bikes from ground floor')
+insert into T_DTLS_POST_COMMENTS (Sequence ,_Titleid ,Username ,PostcommentDateTime ,Postcomment) values (2,3,'Admin','2015-03-15','hi ! can anyone let me know who is th owner of white alto?')
+
+
+SELECT T_DTLS_POST_COMMENTS.id,T_DTLS_POST_COMMENTS._Titleid as TitleId,Username,Sequence,title,PostcommentDateTime,Postcomment 
+FROM T_DTLS_POST_COMMENTS 
+INNER JOIN T_MS_POST_TITLE ON T_DTLS_POST_COMMENTS._Titleid = T_MS_POST_TITLE.id order by _Titleid
+
+
+-------flat_master------------------------------------------------------
 CREATE TABLE flat_master(
 flt_id INT NOT NULL AUTO_INCREMENT ,
 flt_type VARCHAR( 10 ) NOT NULL ,

@@ -39,3 +39,49 @@ main.Month=abc.Month and main.Year=abc.Year) as dtls
 ON A.flt_id = dtls.flt_id
 
 
+6.) SELECT ((((YEAR*100) + MONTH)*100)+1) as date , `payid` ,`MONTH` ,`YEAR`,`OwnerId`,`flt_id`,`Amount`,`Entrydt` ,`Paidby` FROM MaintainanceDetail
+
+7.) select MAX(((((YEAR*100) + MONTH)*100)+1)) as DATE
+,MONTH(CONVERT(MAX(((((YEAR*100) + MONTH)*100)+1)),DATETIME)) AS MONTH
+,YEAR(CONVERT(MAX(((((YEAR*100) + MONTH)*100)+1)),DATETIME)) AS YEAR
+,OWNERID
+,FLT_ID 
+,ENTRYDT
+from MaintainanceDetail GROUP BY OWNERID,FLT_ID
+
+
+8.) SELECT A.flt_id
+,A.flt_no
+,A.flt_type 
+,IFNULL(B.id,0) as id
+,IFNULL(B.Owner_name,"Not Registered") as Owner_name 			
+,B.email						
+,B.Owner_contact 
+,B.Renter_name
+,B.Renter_contact
+,MONTHNAME(STR_TO_DATE(dtls.Month, "%m")) as LastPaidMonth
+
+,dtls.Year as LastPaidYear
+,dtls.Amount  as LastPaidAmount
+,dtls.Entrydt as LastPaidEntrydt
+,dtls.AdminApprovedt  as LastPaidAdminApproval
+,dtls.Paidby  as LastPaidby
+FROM flat_master A
+LEFT OUTER JOIN members B ON A.flt_id = B.flt_id
+LEFT OUTER JOIN (
+select 
+MAX(((((YEAR*100) + MONTH)*100)+1)) as DATE
+,MONTH(CONVERT(MAX(((((YEAR*100) + MONTH)*100)+1)),DATETIME)) AS MONTH
+,YEAR(CONVERT(MAX(((((YEAR*100) + MONTH)*100)+1)),DATETIME)) AS YEAR
+,AMOUNT
+,OWNERID
+,FLT_ID 
+,AdminApprovedt
+,Paidby
+,ENTRYDT
+from MaintainanceDetail GROUP BY OWNERID,FLT_ID) as dtls 
+ON A.flt_id = dtls.FLT_ID
+
+
+
+9.) ALTER TABLE members ADD INDEX ix_flt_id (flt_id)

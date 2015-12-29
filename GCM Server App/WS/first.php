@@ -56,7 +56,7 @@
     //$json=$path;
 	//header('Content-type: application/json');
 	//echo json_encode($json);		
-    include_once("ws_crud_maintainance.php");
+    include_once("ws_crud_maintainance.php");    
 ?>
 <?php 
     include_once("datepicker.php");
